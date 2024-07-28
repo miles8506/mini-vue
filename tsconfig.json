@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES5",
+      "DOM",
+      "ES2015"
+    ]
+  }
+}
