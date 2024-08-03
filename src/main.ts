@@ -1,14 +1,15 @@
-import { h, mount, patch } from './utils/render'
+import createApp from './utils/createApp'
+import { reactive } from './utils/reactive';
+import { h } from './utils/render'
 
-const vNodes = h('div', { class: 'foo', id: 'aaa' }, [
-  h('h2', null, '當前count:'),
-  h('button', { onClick: () => { console.log('bar'); } }, 'click')
-])
-
-mount(vNodes, document.querySelector('#app'))
-
-const newNode = h('div', { class: 'bar' }, [h('h2', null, '當前count:'), h('div', null, 'qqq')])
-
-setTimeout(() => {
-  patch(vNodes, newNode)
-}, 2000);
+createApp({
+  data: reactive({
+    count: 0
+  }),
+  render() {
+    return h('div', null, [
+      h('h2', null, `count: ${this.data.count}`),
+      h('button', {onClick: () => this.data.count++ }, 'click')
+    ])
+  }
+}).mount('#app')

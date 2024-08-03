@@ -1,4 +1,4 @@
-interface VNode {
+export interface VNode {
   tag: string
   props: Record<string, unknown> | null
   children: VNode[] | string | null
@@ -72,12 +72,12 @@ export function patch(n1: VNode, n2: VNode) {
   }
 
   for (const key in oldProps) {
-    if (!(key in newProps)) {
-      if (key.startsWith('on')) {
-        el.removeEventListener(key.substring(2).toLowerCase(), newProps[key] as (() => {}))
-      } else {
-        el.removeAttribute(key)
-      }
+    if (key.startsWith('on')) {
+      el.removeEventListener(key.substring(2).toLowerCase(), newProps[key] as (() => {}))
+    }
+
+    if (!(key in newProps)) { 
+      el.removeAttribute(key)
     }
   }
 

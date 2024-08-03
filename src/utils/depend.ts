@@ -19,7 +19,7 @@ class Depend {
   }
 }
 
-function watchFn(fn: () => void) {
+function watchEffect(fn: () => void) {
   activeFn = fn
   fn()
   activeFn = null
@@ -44,7 +44,7 @@ function getDepend<T extends TargetType>(target: T, key: string) {
 export {
   Depend,
   activeFn,
-  watchFn,
+  watchEffect,
   getDepend,
   targetMap
 }
